@@ -6,6 +6,10 @@ struct MemberCard: View {
     let onDelete: () -> Void
     @State private var showingEditSheet = false
     
+    private var balanceColor: Color {
+        member.balance < 50 ? .red : .green
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
@@ -23,7 +27,7 @@ struct MemberCard: View {
                 Text("¥\(String(format: "%.2f", member.balance))")
                     .font(.title2)
                     .bold()
-                    .foregroundColor(.green)
+                    .foregroundColor(balanceColor)
             }
         }
         .padding(12)
